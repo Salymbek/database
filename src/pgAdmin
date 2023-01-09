@@ -1,0 +1,328 @@
+/*-------------------------file1----------------------------*/
+CREATE TABLE gender(
+    id SERIAL PRIMARY KEY ,
+    gender VARCHAR NOT NULL
+);
+
+
+CREATE TABLE person(
+    id SERIAL PRIMARY KEY ,
+    first_name VARCHAR(50) NOT NULL ,
+    last_name VARCHAR(50),
+    phone_number VARCHAR(50) UNIQUE,
+    gender_id INTEGER REFERENCES gender (id)
+);
+
+SELECT * FROM gender;
+SELECT * FROM person
+
+INSERT INTO gender(gender)
+VALUES ('MALE'),
+       ('FEMALE');
+
+INSERT INTO person(first_name, last_name, phone_number,gender_id)
+VALUES ('Akyl','Asanov','+996706450975',1),
+       ('Asan','Akylov','+996700500400',1),
+       ('Salym','Kalykov','+996706450970',1),
+       ('Bekzat','Bokuev','+996706450950',1),
+       ('Aigul','Baktemirova','+996706600300',2);
+
+/*-----------------------file2----------------------------*/
+
+CREATE TABLE school(
+    id SERIAL PRIMARY KEY ,
+    name VARCHAR NOT NULL
+);
+
+
+CREATE TABLE student(
+    id SERIAL PRIMARY KEY ,
+    first_name VARCHAR(50) NOT NULL ,
+    last_name VARCHAR(50),
+    school_id INTEGER REFERENCES school (id)
+);
+
+SELECT * FROM school;
+SELECT * FROM student;
+
+INSERT INTO school(name)
+VALUES ('MANAS'),
+       ('ALYKUL OSMONOV'),
+       ('SARY-OZON');
+
+
+INSERT INTO student(first_name, last_name, school_id)
+VALUES ('Akyl','Asanov',1),
+       ('Asan','Akylov',2),
+       ('Salym','Kalykov',1),
+       ('Bekzat','Bokuev',3),
+       ('Aigul','Baktemirova',2);
+
+/*-----------------------file3------------------------*/
+
+CREATE TABLE position(
+    id SERIAL PRIMARY KEY ,
+    post VARCHAR NOT NULL
+);
+
+
+CREATE TABLE people(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL ,
+    age INT,
+    phone_number VARCHAR(50) UNIQUE,
+    position_id INTEGER REFERENCES position (id)
+);
+
+
+SELECT * FROM position;
+SELECT * FROM people;
+
+
+INSERT INTO position(post)
+VALUES ('Dancer'),
+       ('Vocal'),
+       ('Ballerina'),
+       ('Singer');
+
+INSERT INTO people(name, age, phone_number, position_id)
+VALUES ('Akyl',24,'+996706434975',2),
+       ('Asan',23,'+996754500400',4),
+       ('Salym',25,'+996707850970',2),
+       ('Bekzat',22,'+996708950950',1),
+       ('Aigul',21,'+996706687300',3);
+
+/*------------------file4-------------------------*/
+
+CREATE TABLE colour(
+    id SERIAL PRIMARY KEY ,
+    colour VARCHAR NOT NULL
+);
+
+
+CREATE TABLE cat(
+    id SERIAL PRIMARY KEY ,
+    name VARCHAR(50) NOT NULL ,
+    age INT NOT NULL ,
+    colour_id INTEGER REFERENCES colour (id)
+);
+
+SELECT * FROM colour;
+SELECT * FROM cat;
+
+
+INSERT INTO colour(colour)
+VALUES ('BLACK'),
+       ('WHITE'),
+       ('RED'),
+       ('GREY');
+
+
+
+INSERT INTO cat(name, age, colour_id)
+VALUES ('Businka',5,2),
+       ('Claus',8,1),
+       ('Rick',6,3),
+       ('Blaze',7,4),
+       ('NaCl',5,2);
+
+/*------------------------file5------------------------*/
+
+CREATE TABLE vieww(
+    id SERIAL PRIMARY KEY ,
+    view VARCHAR NOT NULL
+);
+
+
+CREATE TABLE animal(
+    id SERIAL PRIMARY KEY ,
+    name VARCHAR(50) NOT NULL ,
+    age INT NOT NULL ,
+    view_id INTEGER REFERENCES vieww (id)
+);
+
+SELECT * FROM vieww;
+SELECT * FROM animal;
+
+INSERT INTO vieww(view)
+VALUES ('CAT'),
+       ('DOG'),
+       ('PARROT'),
+       ('RABBIT');
+
+
+
+INSERT INTO animal(name, age,view_id)
+VALUES ('Sharik',5,2),
+       ('Claus',6,4),
+       ('Spike',6,2),
+       ('Nikola',4,3),
+       ('Micheal',5,1);
+
+/*---------------------file6---------------------*/
+
+CREATE TABLE colourss(
+    id SERIAL PRIMARY KEY ,
+    colours VARCHAR NOT NULL
+);
+
+
+CREATE TABLE car(
+    id SERIAL PRIMARY KEY ,
+    model VARCHAR(50) NOT NULL ,
+    year INT NOT NULL ,
+    colours_id INTEGER REFERENCES colourss (id)
+);
+
+SELECT * FROM colourss;
+SELECT * FROM car;
+
+
+INSERT INTO colourss(colours)
+VALUES ('BLACK'),
+       ('WHITE'),
+       ('BLUE'),
+       ('GREY'),
+       ('RED');
+
+
+
+INSERT INTO car(model, year, colours_id)
+VALUES ('MERS',2006,1),
+       ('BMW',2010,3),
+       ('TOYOTA',2007,4),
+       ('BUGATTI',2016,5),
+       ('WOLCSVAGEN',2000,2);
+
+/*-----------------------file7-----------------------*/
+
+CREATE TABLE colours(
+    id SERIAL PRIMARY KEY ,
+    colour VARCHAR NOT NULL
+);
+
+
+CREATE TABLE flower(
+    id SERIAL PRIMARY KEY ,
+    name VARCHAR(50) NOT NULL ,
+    price DOUBLE PRECISION NOT NULL ,
+    colour_id INTEGER REFERENCES colours (id)
+);
+
+SELECT * FROM colours;
+SELECT * FROM flower;
+
+
+INSERT INTO colours(colour)
+VALUES ('PURPLE'),
+        ('WHITE'),
+        ('RED'),
+        ('YELLOW'),
+        ('VIOLET');
+
+
+
+INSERT INTO flower(name, price, colour_id)
+VALUES ('ROSE',200,3),
+       ('LILY',200,1),
+       ('POPY',120,2),
+       ('ASTRA',170,5),
+       ('TULIP',150,4);
+
+/*-------------------------file8----------------------*/
+
+CREATE TABLE stage(
+    id SERIAL PRIMARY KEY ,
+    stage VARCHAR NOT NULL
+);
+
+
+CREATE TABLE campus_persons(
+    id SERIAL PRIMARY KEY ,
+    name VARCHAR(50) NOT NULL ,
+    age INT NOT NULL ,
+    stage_id INTEGER REFERENCES stage (id)
+);
+
+
+SELECT * FROM stage;
+SELECT * FROM campus_persons;
+
+
+INSERT INTO stage(stage)
+VALUES ('Mentor'),
+       ('Student'),
+       ('Director'),
+       ('Instructor');
+
+
+
+INSERT INTO campus_persons(name, age, stage_id)
+VALUES ('Arsen',22,1),
+       ('Kubanych',18,2),
+       ('Belek',22,1),
+       ('Aizada',24,4),
+       ('Aigerim',25,3);
+
+/*-------------------file9-------------------------*/
+
+CREATE TABLE banc_account(
+    id SERIAL PRIMARY KEY ,
+    bank VARCHAR NOT NULL
+);
+
+
+CREATE TABLE pers(
+    id SERIAL PRIMARY KEY ,
+    name VARCHAR(50) NOT NULL ,
+    money DOUBLE PRECISION NOT NULL ,
+    bank_id INTEGER REFERENCES banc_account (id)
+);
+
+SELECT * FROM banc_account;
+SELECT * FROM pers;
+
+INSERT INTO banc_account(bank)
+VALUES ('ALA-TOO BANK'),
+       ('RSK-BANK'),
+       ('СБЕР-БАНК'),
+       ('AIYL-BANK');
+
+
+
+INSERT INTO pers(name, money, bank_id)
+VALUES ('Kutman',10000,2),
+       ('Maksat',25000,1),
+       ('Myktybek',15000,4),
+       ('Bakyt',16000,2),
+       ('Nurlan',13000,3);
+
+/*----------------------------file10------------------------*/
+
+CREATE TABLE OS(
+    id SERIAL PRIMARY KEY ,
+    operation_system VARCHAR NOT NULL
+);
+
+
+CREATE TABLE phone(
+    id SERIAL PRIMARY KEY ,
+    model VARCHAR(50) NOT NULL ,
+    years iNTEGER ,
+    os_id INTEGER REFERENCES OS (id)
+);
+
+SELECT * FROM OS;
+SELECT * FROM phone;
+
+INSERT INTO OS(operation_system)
+VALUES ('ANDROID'),
+       ('IOS');
+
+
+INSERT INTO phone(model, years, os_id)
+VALUES ('SAMSUNG', 1837, 1)
+       ('REDMI', 1989, 1)
+       ('REALMI', 2016, 1)
+       ('APPLE', 1976, 2);
+
